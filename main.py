@@ -5,22 +5,19 @@ from sklearn.model_selection import train_test_split
 # from sklearn.tree import DecisionTreeRegressor
 
 
-dataset_path = "./dataset/Housing.csv"
+DATASET_PATH = "./dataset/Housing.csv"
 
 # Leer la tabla
-table = pd.read_csv(dataset_path)
+table = pd.read_csv(DATASET_PATH)
 
 
 # Obtener X y Y
-columnYname = "price"
+column_y_name = "price"
+column_x_name = ["area", "bedrooms", "bathrooms"]
 
-columnas = ["area", "bedrooms", "bathrooms", "price"]
 
-featuresColNames = filter(lambda col : col != columnYname, columnas)
-yColName = filter(lambda col : col == columnYname, columnas)
-
-X = table.loc[:, featuresColNames]
-Y = table.loc[:, yColName]
+X = table.loc[:, column_x_name]
+Y = table.loc[:, column_y_name]
 
 X_train, X_test, y_train, y_test = train_test_split(X, Y, random_state = 0, train_size = 0.70)
 
